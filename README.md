@@ -3,7 +3,7 @@ Invst
 
 A script to analize investments    
 
-##DISLAIMER:
+## DISLAIMER:
 
 USE AT YOUR OWN RISK
 
