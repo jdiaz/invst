@@ -1,7 +1,9 @@
 Invst
 ======
 
-A script to analize investments
+A script to analize investments    
+
+##DISLAIMER:
 
 USE AT YOUR OWN RISK
 
