@@ -3,6 +3,15 @@ Invst
 
 A script to analize investments    
 
+## Usage
+
+Open `investment_analysis.py` and create an instance of InvestmentCalculator with the appropriate params to your simulation.
+
+In the terminal run
+```./investment_analysis.py```
+
+The scripts comes with built in examples. You can modify that to your choosing.
+
 ## DISLAIMER:
 
 USE AT YOUR OWN RISK
