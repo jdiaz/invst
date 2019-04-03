@@ -65,28 +65,55 @@ class InvestmentCalculator:
 
 
     def compute(self):
-        print('=========================================================================================')
+        print('===============================================================')
         print('Investment analysis:')
         print('\tFor {} years'.format(self.years))
-        print('\tStarting shares: {}, {}'.format(self.total_shares, self.__format_money(self.total_shares * self.stock_price)))
-        print('\tStarting stock price: {}'.format(self.__format_money(self.stock_price)))
-        print('\tInvesting {} per pay period ({}) times a year'.format(self.__format_money(self.investment_per_payout_period), self.payout_period))
+        print('\tStarting shares: {}, {}'.format(
+            self.total_shares,
+            self.__format_money(self.total_shares * self.stock_price)
+        ))
+        print('\tStarting stock price: {}'.format(
+            self.__format_money(self.stock_price))
+        )
+        print('\tInvesting {} per pay period ({}) times a year'.format(
+            self.__format_money(self.investment_per_payout_period),
+            self.payout_period
+        ))
         print('\tResults:')
+
         total_money_from_divided_payout = 0
         for _ in range(self.years):
             for _ in range(self.payout_period):
-                money_made_from_dividend = self.__dividend_payout(self.total_shares, self.payout_ratio)
+                money_made_from_dividend = self.__dividend_payout(
+                    self.total_shares,
+                    self.payout_ratio,
+                )
                 total_money_from_divided_payout += money_made_from_dividend
                 if self.reinvest_dividends:
-                    stock_purchased_from_dividends = self.__purchasable_stock_amount(self.stock_price, money_made_from_dividend)
+                    stock_purchased_from_dividends = self.__purchasable_stock_amount(
+                        self.stock_price,
+                        money_made_from_dividend,
+                    )
                     self.total_shares += stock_purchased_from_dividends
-                self.total_shares += self.__purchasable_stock_amount(self.stock_price, self.investment_per_payout_period)
+                self.total_shares += self.__purchasable_stock_amount(
+                    self.stock_price,
+                    self.investment_per_payout_period,
+                )
             # Increase stock price by Year Return %; once every year
-            self.stock_price += (self.stock_price * self.year_return)    
-        print('\tTotal stock: {}, {}'.format(self.total_shares, self.__stock_value(self.stock_price, self.total_shares)))
+            self.stock_price += (self.stock_price * self.year_return)
+  
+        print('\tTotal stock: {}, {}'.format(
+            self.total_shares,
+            self.__stock_value(self.stock_price, self.total_shares),
+        ))
         print('\tNew stock price: {}'.format(self.__format_money(self.stock_price)))
-        print('\tTotal made from dividends: {}, Was it reinvested? {}'.format(self.__format_money(total_money_from_divided_payout), self.reinvest_dividends))
-        print('\tGoing forward per quarter you will make: {}'.format(self.__format_money(self.total_shares * self.payout_ratio)))
+        print('\tTotal made from dividends: {}, Was it reinvested? {}'.format(
+            self.__format_money(total_money_from_divided_payout),
+            self.reinvest_dividends,
+        ))
+        print('\tGoing forward per quarter you will make: {}'.format(
+            self.__format_money(self.total_shares * self.payout_ratio),
+        ))
 
 
 global_years = 5
