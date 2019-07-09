@@ -10,6 +10,21 @@ Open `investment_analysis.py` and create an instance of InvestmentCalculator wit
 In the terminal run
 ```./investment_analysis.py```
 
+```
+=======================================================================
+Investment analysis:
+	For (3) years
+	Starting shares: 117, $3,635.19
+	Starting stock price: $31.07
+	Investing $3,000.00 per pay period (4) times a year
+
+	Results:
+	Total stock: 1411.464367996623, $43,854.20
+	New stock price: $31.07
+	Total made from dividends: $4,219.01, Was it reinvested? True
+	Going forward per quarter you will make: $719.85
+```
+
 The scripts comes with built in examples. You can modify that to your choosing.
 
 ## DISLAIMER:
