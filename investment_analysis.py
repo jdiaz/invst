@@ -65,21 +65,23 @@ class InvestmentCalculator:
 
 
     def compute(self):
-        print('===============================================================')
+        print('=======================================================================')
         print('Investment analysis:')
-        print('\tFor {} years'.format(self.years))
-        print('\tStarting shares: {}, {}'.format(
-            self.total_shares,
-            self.__format_money(self.total_shares * self.stock_price)
-        ))
-        print('\tStarting stock price: {}'.format(
-            self.__format_money(self.stock_price))
+        print('\tFor ({}) years'.format(self.years))
+        print(
+            '\tStarting shares: {}, {}'.format(
+                self.total_shares,
+                self.__format_money(self.total_shares * self.stock_price),
+            ),
         )
-        print('\tInvesting {} per pay period ({}) times a year'.format(
-            self.__format_money(self.investment_per_payout_period),
-            self.payout_period
-        ))
-        print('\tResults:')
+        print(
+            '\tStarting stock price: {}'.format(self.__format_money(self.stock_price)),
+        )
+        print(
+            '\tInvesting {} per pay period ({}) times a year'.format(
+                self.__format_money(self.investment_per_payout_period), self.payout_period
+            ),
+        )
 
         total_money_from_divided_payout = 0
         for _ in range(self.years):
@@ -102,18 +104,23 @@ class InvestmentCalculator:
             # Increase stock price by Year Return %; once every year
             self.stock_price += (self.stock_price * self.year_return)
   
-        print('\tTotal stock: {}, {}'.format(
-            self.total_shares,
-            self.__stock_value(self.stock_price, self.total_shares),
-        ))
+        print('\n\tResults:')
+        print(
+            '\tTotal stock: {}, {}'.format(
+                self.total_shares, self.__stock_value(self.stock_price, self.total_shares),
+            ),
+        )
         print('\tNew stock price: {}'.format(self.__format_money(self.stock_price)))
-        print('\tTotal made from dividends: {}, Was it reinvested? {}'.format(
-            self.__format_money(total_money_from_divided_payout),
-            self.reinvest_dividends,
-        ))
-        print('\tGoing forward per quarter you will make: {}'.format(
-            self.__format_money(self.total_shares * self.payout_ratio),
-        ))
+        print(
+            '\tTotal made from dividends: {}, Was it reinvested? {}'.format(
+                self.__format_money(total_money_from_divided_payout), self.reinvest_dividends
+            ),
+        )
+        print(
+            '\tGoing forward per quarter you will make: {}'.format(
+                self.__format_money(self.total_shares * self.payout_ratio),
+            ),
+        )
 
 
 global_years = 5
@@ -125,10 +132,10 @@ def calculateATTStock():
     """
     (InvestmentCalculator()) \
         .set_stock_price(31.07) \
-        .set_shares(80) \
+        .set_shares(117) \
         .set_payout_period(4) \
-        .set_investment_per_payout_period(global_investment_per_period) \
-        .set_years(global_years) \
+        .set_investment_per_payout_period(3000) \
+        .set_years(3) \
         .set_payout_ratio(0.51) \
         .set_year_percentage_return(0.0) \
         .should_reinvest_dividends(True) \
@@ -139,16 +146,16 @@ def calculateIVVFund():
         Calculates stock investment in IVV ETF
     """
     (InvestmentCalculator()) \
-        .set_stock_price(284.56) \
-        .set_shares(20) \
+        .set_stock_price(288.56) \
+        .set_shares(30) \
         .set_payout_period(4) \
-        .set_investment_per_payout_period(global_investment_per_period) \
-        .set_years(global_years) \
+        .set_investment_per_payout_period(500) \
+        .set_years(15) \
         .set_payout_ratio(1.14) \
         .set_year_percentage_return(.1012) \
-        .should_reinvest_dividends(False) \
+        .should_reinvest_dividends(True) \
         .compute()
 
 if __name__ == '__main__':
     calculateATTStock()
-    calculateIVVFund()
+    #calculateIVVFund()
